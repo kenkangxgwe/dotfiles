@@ -5,22 +5,20 @@ set nocompatible
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=$VIMRUNTIME/bundle/Vundle.vim/
-call vundle#begin('$VIMRUNTIME/bundle/')
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-latex/vim-latex'
-Plugin 'davidoc/taskpaper.vim'
-Plugin 'rsmenon/vim-mathematica'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 "Plugin 'tpope/vim-fugitive'
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-latex/vim-latex'
+Plugin 'Valloric/YouCompleteMe'
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
 " Git plugin not hosted on GitHub
@@ -50,12 +48,12 @@ filetype plugin indent on    " required
 "=========================================================
 
 filetype on
-source $VIMRUNTIME/vimrc_example.vim
-"source $VIMRUNTIME/mswin.vim
-"behave mswin
 
 "使用中文帮助文档
 set helplang=cn
+
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,latin-1
 
 "Set mapleader 
 let mapleader = "," 
@@ -87,9 +85,6 @@ set autoindent
 
 "配色
 colorscheme monokai
-
-"字体
-set guifont=Source_Code_Pro:h12
 
 "提示音
 set noerrorbells
@@ -145,9 +140,8 @@ let g:tex_flavor='latex'
 " all the figure labels. Very useful!
 set iskeyword+=:
 let g:Tex_DefaultTargetFormat='pdf'
-" let g:Tex_CompileRule_pdf = 'pdflatex --synctex=-1 -src-specials -interaction=nonstopmode $*'
-let g:Tex_CompileRule_pdf = 'xelatex --synctex=-1 -src-specials -interaction=nonstopmode $*'
-let g:Tex_ViewRule_pdf = 'SumatraPDF -reuse-instance -inverse-search "gvim -c \":RemoteOpen +\%l \"\%f\"\"" '
+let g:Tex_CompileRule_pdf = 'pdflatex --synctex=-1 -src-specials -interaction=nonstopmode $*'
+let g:Tex_ViewRule_pdf = 'sumatrapdf -reuse-instance -inverse-search "gvim -c \":RemoteOpen +\%l \"\%f\"\"" '
 
 "Diff============================================================================
 set diffexpr=MyDiff()
