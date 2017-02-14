@@ -9,11 +9,13 @@ set viminfo=
 
 " Hide Toolbar
 set go-=T
-set go-=r
 "set go-=m
 
 "Color Scheme
-colorscheme monokai
+colorscheme base16-monokai
+
+"No Bells
+set vb t_vb=
 
 "StatusLine
 set ls=2
@@ -44,10 +46,11 @@ source $VIMRUNTIME/menu.vim
 language messages zh_CN.utf-8
 
 "×ÖÌå
-set guifont=Inconsolata:h14
-"set guifont=Consolas:h14
+"set guifont=Inconsolata:h14
+set guifont=Consolas:h11
 "set guifont=Monaco:h12
 "set gfw=Microsoft\ YaHei\ UI:h12
+set gfw=simhei:h11
 ":cGB2312
 "set gfw=msyhl:h12:cGB2312
 
