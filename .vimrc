@@ -1,3 +1,4 @@
+"Get out of VI's compatible mode 
 set nocompatible
 
 "Vundle
@@ -18,6 +19,7 @@ Plugin 'VundleVim/Vundle.vim'
 " plugin on GitHub repo
 "Plugin 'tpope/vim-fugitive'
 Plugin 'vim-latex/vim-latex'
+Plugin 'chriskempson/base16-vim'
 Plugin 'Valloric/YouCompleteMe'
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
@@ -83,8 +85,14 @@ set smartindent
 set incsearch 
 set autoindent
 
+" Base16 Config
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
 "≈‰…´
-colorscheme monokai
+colorscheme base16-monokai
 
 "Ã· æ“Ù
 set noerrorbells
@@ -92,8 +100,10 @@ set noerrorbells
 "Show matching bracets 
 set showmatch
 
-"Get out of VI's compatible mode 
-set nocompatible
+" Config cursor shapes
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
 
 "Have the mouse enabled all the time 
 "set mouse=a
