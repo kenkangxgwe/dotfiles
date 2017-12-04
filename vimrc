@@ -1,28 +1,30 @@
 set nocompatible
-
+set pythonthreedll=python36.dll
 " Vundle
 " ================================================================
 filetype off                  " required
-
 " set the runtime path to include Vundle and initialize
-set rtp+=$VIMRUNTIME/bundle/Vundle.vim/
-call vundle#begin('$VIMRUNTIME/bundle/')
+set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
+call vundle#begin('$HOME/vimfiles/bundle/')
 " alternatively, pass a path where Vundle should install plugins
 " call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'justinmk/vim-sneak'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'tpope/vim-surround'
+Plugin 'chrisbra/vim-diff-enhanced'
+Plugin 'chriskempson/base16-vim'
+Plugin 'itchyny/thumbnail.vim'
+" Plugin 'justinmk/vim-sneak'
+Plugin 'lilydjwg/colorizer'
+Plugin 'mattn/emmet-vim'
+Plugin 'rsmenon/vim-mathematica'
+Plugin 'sheerun/vim-polyglot'
 Plugin 'unblevable/quick-scope'
 Plugin 'vim-latex/vim-latex'
-Plugin 'rsmenon/vim-mathematica'
-Plugin 'mattn/emmet-vim'
-Plugin 'chriskempson/base16-vim'
-Plugin 'chrisbra/vim-diff-enhanced'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'lilydjwg/colorizer'
-Plugin 'itchyny/thumbnail.vim'
 Plugin 'vim-scripts/loremipsum'
+Plugin 'morhetz/gruvbox'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -65,6 +67,8 @@ source $VIMRUNTIME/vimrc_example.vim
 
 " 使用中文帮助文档
 set helplang=cn
+
+set encoding=utf-8
 
 " Set mapleader 
 let mapleader = "," 
@@ -122,7 +126,7 @@ set autoread
 filetype plugin on 
 
 " 设置搜索结果高亮显示 
-" set hlsearch
+set hlsearch
 
 " 设置记录的历史操作列表 
 set history=50
@@ -163,8 +167,8 @@ let g:tex_flavor='latex'
 set iskeyword+=:
 let g:Tex_DefaultTargetFormat='pdf'
 " let g:Tex_CompileRule_pdf = 'pdflatex --synctex=-1 -src-specials -interaction=nonstopmode $*'
-" let g:Tex_CompileRule_pdf = 'xelatex --synctex=-1 -src-specials -interaction=nonstopmode $*'
-let g:Tex_CompileRule_pdf = 'lualatex --synctex=-1 -src-specials -interaction=nonstopmode $*'
+let g:Tex_CompileRule_pdf = 'xelatex --synctex=-1 -src-specials -interaction=nonstopmode $*'
+" let g:Tex_CompileRule_pdf = 'lualatex --synctex=-1 -src-specials -interaction=nonstopmode $*'
 let g:Tex_ViewRule_pdf = 'sumatrapdf -reuse-instance -inverse-search "gvim -c \":RemoteOpen +\%l \%f\"" '
 
 " Diff============================================================================
