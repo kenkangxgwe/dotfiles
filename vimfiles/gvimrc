@@ -4,24 +4,25 @@ set ch=1
 " Hide the mouse when typing text
 set mousehide
 
-"关闭历史记录
+" Turn off history
 set viminfo=
 
 " Hide Toolbar
 set go-=T
 set go-=m
 
-"Color Scheme
+" Color Scheme
 colorscheme base16-monokai
 
-"No Bells
+" No Bells
 set vb t_vb=
 
-"StatusLine
+" StatusLine
 set ls=2
 set stl=%1*%<%Y(%{&ff}):%t>\ %w%h%m%r\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ %=%3l,%2c%V\ \ \ \ \ \ \ %2p%%\ of\ %L\ Lines\ \ \ \ \ ASCII[%5o]=%3b,%3BH\ \ \ 
-" hi User1 guifg=#58B2DC guibg=#202325
-"Highlight
+hi User1 guifg=#58B2DC guibg=#202325
+
+" Highlight
 "hi Normal guibg=#0B1013
 "hi LineNr guibg=#202325 guifg=#58B2DC
 "hi CursorLineNr guibg=#202325 guifg=#58B2DC
@@ -34,21 +35,22 @@ set stl=%1*%<%Y(%{&ff}):%t>\ %w%h%m%r\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ %
 "highlight Cursor guibg=Green guifg=NONE
 "highlight lCursor guibg=Cyan guifg=NONE
 
-"解决中文乱码问题
+" 解决中文乱码问题
 set encoding=utf-8
 "set fileencodings=ucs-bom,utf-8,cp936,gb18030,latin-1
 
-"解决UTF-8下菜单乱码
+" 解决UTF-8下菜单乱码
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
-"解决UTF-8下提示信息乱码
+" 解决UTF-8下提示信息乱码
 language messages zh_CN.utf-8
 
-"字体
+" Font
+set guifont=Sarasa\ Mono\ SC:h11
 "set guifont=Inconsolata:h14
-"set guifont=Consolas:h11
 "set guifont=Monaco:h12
+"等宽字体
 "set gfw=Microsoft\ YaHei\ UI:h12
 "set gfw=simhei:h11
 ":cGB2312
