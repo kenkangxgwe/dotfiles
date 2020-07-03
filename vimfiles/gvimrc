@@ -4,24 +4,25 @@ set ch=1
 " Hide the mouse when typing text
 set mousehide
 
-"¹Ø±ÕÀúÊ·¼ÇÂ¼
+" Turn off history
 set viminfo=
 
 " Hide Toolbar
 set go-=T
 "set go-=m
 
-"Color Scheme
+" Color Scheme
 colorscheme base16-monokai
 
-"No Bells
+" No Bells
 set vb t_vb=
 
-"StatusLine
+" StatusLine
 set ls=2
 set stl=%1*%<%Y(%{&ff}):%t>\ %w%h%m%r\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ %=%3l,%2c%V\ \ \ \ \ \ \ %2p%%\ of\ %L\ Lines\ \ \ \ \ ASCII[%5o]=%3b,%3BH\ \ \ 
 hi User1 guifg=#58B2DC guibg=#202325
-"Highlight
+
+" Highlight
 "hi Normal guibg=#0B1013
 "hi LineNr guibg=#202325 guifg=#58B2DC
 "hi CursorLineNr guibg=#202325 guifg=#58B2DC
@@ -34,23 +35,24 @@ hi User1 guifg=#58B2DC guibg=#202325
 "highlight Cursor guibg=Green guifg=NONE
 "highlight lCursor guibg=Cyan guifg=NONE
 
-"½â¾öÖĞÎÄÂÒÂëÎÊÌâ
+" è§£å†³ä¸­æ–‡ä¹±ç é—®é¢˜
 set encoding=utf-8
 "set fileencodings=ucs-bom,utf-8,cp936,gb18030,latin-1
 
-"½â¾öUTF-8ÏÂ²Ëµ¥ÂÒÂë
+" è§£å†³UTF-8ä¸‹èœå•ä¹±ç 
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
-"½â¾öUTF-8ÏÂÌáÊ¾ĞÅÏ¢ÂÒÂë
+" è§£å†³UTF-8ä¸‹æç¤ºä¿¡æ¯ä¹±ç 
 language messages zh_CN.utf-8
 
-"×ÖÌå
+" Font
+set guifont=Sarasa\ Mono\ SC:h11
 "set guifont=Inconsolata:h14
-set guifont=Consolas:h11
 "set guifont=Monaco:h12
+"ç­‰å®½å­—ä½“
 "set gfw=Microsoft\ YaHei\ UI:h12
-set gfw=simhei:h11
+"set gfw=simhei:h11
 ":cGB2312
 "set gfw=msyhl:h12:cGB2312
 
