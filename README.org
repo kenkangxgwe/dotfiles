@@ -1,7 +1,11 @@
 #+TITLE: dotfiles
 #+AUTHOR: kenkangxgwe
 
-* Setup .git in a different directory
+** Table of Contents                                                    :TOC:
+  - [[#setup-git-in-a-different-directory][Setup .git in a different directory]]
+  - [[#vim][vim]]
+
+** Setup .git in a different directory
 
 To prevent the whole =$HOME= to be recognized as a huge repo, use:
 #+begin_src bash
@@ -15,5 +19,5 @@ echo 'gitdir: $HOME/dotfiles/' > .git
 #+end_src
 (CR: [[https://emacs.stackexchange.com/a/30606/14936][@tarsius]]) 
 
-* vim
+** vim
 Vim config files are stored under =vimfiles= for Windows and =.vim= for Linux.
