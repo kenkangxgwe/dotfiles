@@ -1,0 +1,19 @@
+#+TITLE: dotfiles
+#+AUTHOR: kenkangxgwe
+
+* Setup .git in a different directory
+
+To prevent the whole =$HOME= to be recognized as a huge repo, use:
+#+begin_src bash
+alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=../'
+#+end_src
+(CR: [[https://github.com/anandpiyer/.dotfiles][@anandpiyer]])
+
+But magit won't detect the repo in this case. To enable it temporarily, add a new file:
+#+begin_src bash
+echo 'gitdir: $HOME/dotfiles/' > .git
+#+end_src
+(CR: [[https://emacs.stackexchange.com/a/30606/14936][@tarsius]]) 
+
+* vim
+Vim config files are stored under =vimfiles= for Windows and =.vim= for Linux.
