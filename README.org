@@ -9,7 +9,7 @@
 
 To prevent the whole =$HOME= to be recognized as a huge repo, use:
 #+begin_src bash
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=../'
+alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME/'
 #+end_src
 (CR: [[https://github.com/anandpiyer/.dotfiles][@anandpiyer]])
 
