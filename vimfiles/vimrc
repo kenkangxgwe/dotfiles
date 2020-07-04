@@ -15,7 +15,7 @@ call plug#begin('~/vimfiles/plugged')
 "     \ 'branch': 'next',
 "     \ 'do': 'bash install.sh',
 "     \ }
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pdavydov108/vim-lsp-cquery'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -84,6 +84,11 @@ set incsearch
 set autoindent
 
 " UI
+" Base16 Config
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 colorscheme base16-monokai
 set guifont=Sarasa\ Mono\ SC:h11
 

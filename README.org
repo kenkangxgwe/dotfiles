@@ -3,21 +3,68 @@
 
 ** Table of Contents                                                    :TOC:
   - [[#setup-git-in-a-different-directory][Setup .git in a different directory]]
-  - [[#vim][vim]]
+  - [[#vim][Vim]]
+    - [[#plug][Plug]]
+    - [[#base16-colorscheme][base16 colorscheme]]
+  - [[#inputrc][=.inputrc=]]
 
 ** Setup .git in a different directory
 
-To prevent the whole =$HOME= to be recognized as a huge repo, use:
-#+begin_src bash
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=../'
-#+end_src
-(CR: [[https://github.com/anandpiyer/.dotfiles][@anandpiyer]])
+   To prevent the whole =$HOME= to be recognized as a huge repo, use:
+   #+begin_src bash
+     alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=../'
+   #+end_src
+   (CR: [[https://github.com/anandpiyer/.dotfiles][@anandpiyer]])
 
-But magit won't detect the repo in this case. To enable it temporarily, add a new file:
-#+begin_src bash
-echo 'gitdir: $HOME/dotfiles/' > .git
-#+end_src
-(CR: [[https://emacs.stackexchange.com/a/30606/14936][@tarsius]]) 
+   But magit won't detect the repo in this case. To enable it temporarily, add a new file:
+   #+begin_src bash
+     echo 'gitdir: $HOME/dotfiles/' > .git
+   #+end_src
+   (CR: [[https://emacs.stackexchange.com/a/30606/14936][@tarsius]]) 
 
-** vim
-Vim config files are stored under =vimfiles= for Windows and =.vim= for Linux.
+** Vim
+   
+   Vim config files are stored under =vimfiles= for Windows and =.vim= for Linux.
+
+*** Plug 
+    To install plug
+    #+begin_src bash
+      curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    #+end_src
+    
+*** base16 colorscheme
+    To properly display base16 colorscheme, base16-shell is also required
+    (Source: [[https://github.com/chriskempson/base16-vim#troubleshooting][base16-vim#troubleshooting]]).
+
+    Config should be added to =.bashrc=:
+    #+begin_src bash
+      # Base16 Shell
+      BASE16_SHELL="$HOME/.config/base16-shell/"
+      [ -n "$PS1" ] && \
+        [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+    #+end_src
+    
+    Open a new shell and type =base16= followed by a tab to perform tab completion.
+    (Source: [[https://github.com/chriskempson/base16-shell#bashzsh][base16-shell#bashzsh]])
+    
+    Also update =.vimrc= to use =~/.vimrc_background= file.
+    #+begin_src vimscript
+    if filereadable(expand("~/.vimrc_background"))
+      let base16colorspace=256
+      source ~/.vimrc_background
+    endif
+    #+end_src
+    (Source: [[https://github.com/chriskempson/base16-shell#base16-vim-users][base16-shell#base16-vim-users]])
+
+** =.inputrc=
+   Some other useful configs not applied in this repo:
+   - [[https://vim.fandom.com/wiki/Use_vi_shortcuts_in_terminal][Use vi shortcuts in terminal]]
+   - Change cursor shape in different mode
+     #+begin_src bash
+       # set show-mode-in-prompt on
+       set vi-cmd-mode-string "\1\e[2 q\2"
+       set vi-ins-mode-string "\1\e[6 q\2"
+     #+end_src
+     (Cr: [[https://stackoverflow.com/a/32614367][@Issac Hanson]])
