@@ -38,10 +38,10 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     ;; +chat
      ;; +checkers
      (spell-checking :variables
                      spell-checking-enable-by-default nil
-                     ;; ispell-program-name "aspell"
                      enable-flyspell-auto-completion nil)
      syntax-checking
      ;; +completion
@@ -64,17 +64,61 @@ This function should only modify configuration layer settings."
                treemacs-lock-width t)
      ;; +fonts
      unicode-fonts
+     ;; +intl
+     (chinese :variables
+              pyim-default-scheme 'microsoft-shuangpin
+              ;; chinese-default-input-method nil
+              ;; chinese-enable-youdao-dict t
+              ;; chinese-enable-fcitx t
+              )
      ;; +langs
+     ;; autohotkey
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-backend 'lsp-ccls
+            c-c++-executable "D:\\Projects\\ccls\\Release\\ccls.exe")
+     bibtex
+     csv
+     ;; csharp
+     elixir
      emacs-lisp
-     ;; major-modes
+     ;; extra-langs
+     graphviz
+     ;; haskell
+     html
+     idris
+     ipython-notebook
+     (java :variables java-backend 'lsp)
+     (javascript :variables
+                 javascript-backend 'lsp)
      (latex :variables latex-enable-auto-fill t)
+     ;; lua
+     (markdown :variables markdown-live-preview-engine 'vmd)
+     ;; octave
+     (python :variables
+             python-backend 'lsp
+             python-lsp-server 'mspyls
+             python-lsp-git-root "D:/Projects/python-language-server")
+     ;; shaders
+     sql
+     (typescript :variables typescript-backend 'lsp)
+     windows-scripts
+     yaml
      ;; +misc
      ;; (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
+     ;; +reader
+     (dash :variables helm-dash-docset-newath "C:/Users/kenkangxgwe/AppData/Local/Zeal/Zeal/docsets")
      ;; +source-control
      git
      ;; version-control
+     ;; +tags
+     ;; (gtags :variables gtags-enable-by-default t)
+     ;; +themes
+     ; themes-megapack
      ;; +tools
      dap
+     docker
+     finance
      imenu-list
      lsp
      ; nginx
@@ -83,6 +127,8 @@ This function should only modify configuration layer settings."
             shell-default-shell 'ansi-term
             shell-default-term-shell "pwsh"
             shell-default-position 'bottom)
+     ; speed-reading
+     ; vim-powerline
      )
 
    ;; List of additional packages that will be installed without being
@@ -95,16 +141,46 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages '(
                                       base16-theme
                                       doom-themes
+                                      tao-theme
+                                      ;; (pynt :location "~/.emacs.d/private/local/")
+                                      (hydra-posframe :location "~/.emacs.d/private/local/hydra-posframe")
+                                      posframe
+                                      major-mode-hydra
                                       wolfram-mode
                                       evil-quickscope
+                                      yasnippet-snippets
                                       editorconfig
-                                      all-the-icons)
+                                      eglot
+                                      focus
+                                      vlf
+                                      all-the-icons
+                                      nhexl-mode
+                                      esup
+                                      (beancount
+                                       :location
+                                       "D:/Projects/beancount/editors/emacs"
+                                       ;; (recipe
+                                       ;;  :fetcher github
+                                       ;;  :repo "beancount/beancount"
+                                       ;;  :files ("editors/emacs/beancount.el")
+                                       ;;  )
+                                       )
+                                      (fast-scroll
+                                       :location (recipe
+                                                  :fetcher github
+                                                  :repo "ahungry/fast-scroll"
+                                                  :files ("fast-scroll.el")
+                                                  )
+                                       )
+                                      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(
-                                    vi-tilde-fringe)
+                                    ;; powerline
+                                    vi-tilde-fringe
+                                    org-projectile)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and deletes any unused
@@ -544,6 +620,13 @@ before packages are loaded."
     ;; (load-theme 'base16-monokai t)
     )
 
+  ;; Require VLF (view large files)
+  (use-package vlf-setup)
+
+  ;; cuda-mode
+  ;; (use-package cuda-mode
+  ;;   :defer t)
+
   ;; evil-quickscope
   (use-package evil-quickscope
     :init (setq evil-cross-lines t
@@ -551,11 +634,73 @@ before packages are loaded."
     :config (global-evil-quickscope-mode)
     )
 
+  ;; beancount-mode
+  (use-package beancount
+    :mode ("\\.beancount$" . beancount-mode)
+    :hook (beancount-mode . outline-minor-mode))
+
+  ;; (evil-global-set-key 'motion ";" 'evil-ex)
+  ;; (evil-global-set-key 'normal ":" 'evil-repeat-find-char)
   (spacemacs|do-after-display-system-init
    (spacemacs-modeline/init-spaceline))
 
+
+  (setq ispell-program-name "aspell")
+
+  ;; (defun spacemacs/prompt-kill-emacs ()
+  ;;   "Prompt to save changed buffers and exit Spacemacs"
+  ;;   (interactive)
+  ;;   (save-some-buffers)
+  ;;   (mapc 'kill-buffer  (buffer-list))
+  ;;   (kill-emacs))
+
   (global-set-key (kbd "<mode-line> <wheel-down>") 'next-buffer)
   (global-set-key (kbd "<mode-line> <wheel-up>") 'previous-buffer)
+
+  ;; Hot-fix for yasnippet
+  ;; (setq yas-snippet-dirs yasnippet-snippets-dir)
+
+  ;; Start Server
+  ;; (server-start)
+
+  ;; fringe arrow shape
+  (define-fringe-bitmap 'right-curly-arrow
+    [#b00000000
+     #b00000000
+     #b00000000
+     #b00000000
+     #b00000000
+     #b00000000
+     #b00000000
+     #b00000000])
+  (define-fringe-bitmap 'left-curly-arrow
+    [#b00000000
+     #b00000000
+     #b00000000
+     #b00000000
+     #b00000000
+     #b00000000
+     #b00000000
+     #b00000000])
+
+  ;; wolfram indentation
+  (defun wolfram-smie-rules (kind token)
+    "Wolfram Language SMIE indentation function for KIND and TOKEN."
+    (pcase (cons kind token)
+      ;; (`(:before . "[")
+      ;;  (save-excursion
+      ;;    (smie-default-backward-token) 4))
+      (`(:after . ":=") 4)
+      (`(:after . ,(or "]" "}" ")" "|>")) '(column . 0))
+      ;; (`(:after . ,(or "[" "{" "(" "<|"))
+      ;;  (save-excursion
+      ;;    (beginning-of-line)
+      ;;    (skip-chars-forward " \t")
+      ;;    `(column . ,(+ wolfram-indent (current-column)))))
+      (`(,_ . ";") (smie-rule-separator kind))
+      (`(,_ . ",") (smie-rule-separator kind))
+      (`(:elem . ,_) 0)
+      (t nil)))
 
   ;; 设置垃圾回收，在 Windows 下，emacs25 版本会频繁出发垃圾回收，所以需要设置
   ;; (when (eq system-type 'windows-nt)
@@ -581,8 +726,17 @@ before packages are loaded."
                            (message "Garbage Collector has run for %.06fsec"
                                     (k-time (garbage-collect))))))
 
+  ;; fast-scroll
+  ;; (advice-add #'pixel-scroll-down :around #'fast-scroll-run-fn-minimally)
+
   (setq mouse-wheel-scroll-amount '(5 ((shift) . 1) ((control) . nil)))
   (setq mouse-wheel-progressive-speed nil)
+
+  ;; (defun my-minibuffer-exit-hook ()
+  ;;   (setq gc-cons-threshold 800000))
+
+  ;; (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
+  ;; (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
 
   ;; Line Space
   (setq-default line-spacing 0.2)
@@ -590,8 +744,88 @@ before packages are loaded."
   ;; accelerate all-the-font rendering
   (setq inhibit-compacting-font-caches t)
 
+  ;; neo-tree theme
+  (setq neo-theme 'icons)
+  ;; (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+  ;; automatically start neo-tree
+  ;; (add-hook 'window-setup-hook #'neotree-find-project-root)
+  ;; (add-hook 'server-switch-hook (lambda () (call-interactively 'neotree-show)))
+
+  ;; Javascript indentation
+  (setq-default js2-basic-offset 2)
+  (setq-default js-indent-level 2)
+
+  ;; add hook to wolfram mode for .m files
+  (use-package wolfram-mode
+    :defer t
+    :interpreter "\\(Wolfram\\|Mathematica\\)Script\\( -script\\)?"
+    :mode "\\.m\\'")
+
+  ;; Temporarily avoid bookmark bug
+  ;; (require 'helm-bookmark)
+
+  ;; Handling Chinese Path
+  (setq file-name-coding-system 'gbk)
+  ;; (setq file-name-coding-system 'mule-utf-8-dos)
+  ;; (set-language-environment "UTF-8")
+  ;; (prefer-coding-system 'utf-8) ; Default setting
+
+  ;; 中文字体与 IosevkaCC 字体等宽
+  ;; CJK font has the same width as IosevkaCC
+  ;; (cond
+  ;;  ((display-graphic-p)
+  ;; (spacemacs|do-after-display-system-init
+  ;;  (spacemacs//set-monospaced-font "IosevkaCC" "Noto Serif CJK SC Medium" 20 20)
+  ;;  )
+  ;; )
+  ;; (t 0)
+  ;; )
+
+  ;; No sharing clipboard with system
+  ;; (fset 'evil-visual-update-x-selection 'ignore)
+
   ;; Perform full-document previews in Latex
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+
+  ;; Change Default Dictionary
+  ;; (ispell-change-dictionary "american" t)
+
+  ;; Proxy
+  ;; (setq
+  ;;  url-proxy-services '(("http" . "127.0.0.1:1080")
+  ;;                       ("https" . "127.0.0.1:1080"))
+  ;;  )
+
+  ;; prettier-js
+  ;; (use-package prettier-js
+  ;;   :hook js2-mode
+  ;;   web-mode)
+
+  ;; Add sqlplus path to PATH
+  (let ((sqlplus-path "D:/Programs/Oracle/instantclient_12_2"))
+    (setenv "PATH" (concat sqlplus-path ";" (getenv "PATH")))
+    (add-to-list 'exec-path sqlplus-path))
+
+  ;; Add fcitx-remote path to PATH
+  ;; (let ((fcitx-path "D:/康明宇的文档/Ken's Garage/Editors/Emacs/"))
+  ;;   (setenv "PATH" (concat fcitx-path ";" (getenv "PATH")))
+  ;;   (add-to-list 'exec-path fcitx-path))
+
+  ;; Wolfram-mode
+  (setq wolfram-program "D:/Programs/Wolfram Research/Mathematica/11.3/MathKernel.exe")
+  (setq wolfram-path "C:/Users/Ken.K/AppData/Roaming/Mathematica/Applications")
+  (setq wolfram-indent 4)
+
+  ;; ein
+  ;; (require 'ein-dev)
+  ;; (advice-add 'request--netscape-cookie-parse :around #'fix-request-netscape-cookie-parse)
+  ;; (setq ein:load-dev t)
+  ;; (setq python-shell-interpreter "ipython" python-shell-interpreter-args "--simple-prompt --pprint")
+
+  ;; Enter Zone Mode after a few seconds
+  ;; (require 'zone)
+  ;; (zone-when-idle 600)
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
