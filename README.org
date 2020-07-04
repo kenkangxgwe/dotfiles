@@ -3,7 +3,9 @@
 
 ** Table of Contents                                                    :TOC:
   - [[#setup-git-in-a-different-directory][Setup .git in a different directory]]
-  - [[#vim][vim]]
+  - [[#emacs][Emacs]]
+    - [[#spell-checker][Spell Checker]]
+  - [[#vim][Vim]]
 
 ** Setup .git in a different directory
 
@@ -15,9 +17,14 @@ alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME/'
 
 But magit won't detect the repo in this case. To enable it temporarily, add a new file:
 #+begin_src bash
-echo 'gitdir: $HOME/dotfiles/' > .git
+echo 'gitdir: ./.dotfiles/' > .git
 #+end_src
 (CR: [[https://emacs.stackexchange.com/a/30606/14936][@tarsius]]) 
 
-** vim
+** Emacs
+  
+*** Spell Checker 
+    - Install Aspell in Msys2
+
+** Vim
 Vim config files are stored under =vimfiles= for Windows and =.vim= for Linux.
